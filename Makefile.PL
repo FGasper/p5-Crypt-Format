@@ -8,6 +8,7 @@ WriteMakefile(
     VERSION_FROM => 'lib/Crypt/Format.pm',                                # finds \$VERSION
     AUTHOR       => 'Felipe Gasper ()',
     ABSTRACT     => 'Conversion utilities for encryption applications',
+    LICENSE      => 'perl',
     PREREQ_PM    => {
         'MIME::Base64' => 0.01,
     },
