@@ -6,7 +6,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME         => 'Crypt::Format',
     VERSION_FROM => 'lib/Crypt/Format.pm',                                # finds \$VERSION
-    AUTHOR       => 'Felipe Gasper ()',
+    AUTHOR       => 'Felipe Gasper (FELIPE)',
     ABSTRACT     => 'Conversion utilities for encryption applications',
     PREREQ_PM    => {
         'MIME::Base64' => 0.01,

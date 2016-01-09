@@ -5,7 +5,7 @@ use warnings;
 
 use MIME::Base64 ();
 
-our $VERSION     = '0.02';
+our $VERSION = '0.04';
 
 =head1 NAME
 
@@ -16,7 +16,7 @@ Crypt::Format - Conversion utilities for encryption applications
     use Crypt::Format;
 
     my $der = Crypt::Format::pem2der($pem);
-    my $pem = Crypt::Format::pem2der($der, 'CERTIFICATE REQUEST');
+    my $pem = Crypt::Format::der2pem($der, 'CERTIFICATE REQUEST');
 
 =head1 DESCRIPTION
 
@@ -54,8 +54,7 @@ sub pem2der {
 
 =head1 AUTHOR
 
-    Felipe Gasper
-    CPAN ID: FELIPE
+Felipe Gasper (FELIPE)
 
 =head1 COPYRIGHT
 
