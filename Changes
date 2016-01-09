@@ -3,4 +3,5 @@ Revision history for Perl module Crypt::Format
 0.01 Fri Jan  8 17:20:51 2016
     - original version; created by ExtUtils::ModuleMaker 0.55
 
-
+0.02 Fri Jan  8 18:00:00 2016
+    - Added der2pem()

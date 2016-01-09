@@ -10,6 +10,19 @@ WriteMakefile(
     ABSTRACT     => 'Conversion utilities for encryption applications',
     PREREQ_PM    => {
         'MIME::Base64' => 0.01,
+    },
+    META_MERGE => {
+        'meta-spec' => { version => 2 },
+         resources => {
+             repository => {
+                 type => 'git',
+                 url  => 'https://github.com/FGasper/p5-Crypt-Format.git',
+                 web  => 'https://github.com/FGasper/p5-Crypt-Format',
+             },
+         },
+    },
+    TEST_REQUIRES => {
         'Test::Simple' => 0.44,
+        'Test::Exception' => 0.40,
     },
 );

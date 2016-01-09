@@ -5,7 +5,7 @@ use warnings;
 
 use MIME::Base64 ();
 
-our $VERSION     = '0.01';
+our $VERSION     = '0.02';
 
 =head1 NAME
 
@@ -16,23 +16,28 @@ Crypt::Format - Conversion utilities for encryption applications
     use Crypt::Format;
 
     my $der = Crypt::Format::pem2der($pem);
+    my $pem = Crypt::Format::pem2der($der, 'CERTIFICATE REQUEST');
 
 =head1 DESCRIPTION
 
 Not much more to say! This module is for simple conversions that I got
 tired of writing out.
 
-=head1 TODO
-
-=over 4
-
-=item * C<der2pem()> is the obvious omission here; it’s tricky, though,
-to create for the general case because you’d need to supply the header
-and footer, which vary according to what is actually encoded.
-
-=back
-
 =cut
+
+sub der2pem {
+    my ($der_r, $whatsit) = (\$_[0], $_[1]);
+
+    die "Missing object type!" if !$whatsit;
+
+    my $pem = MIME::Base64::encode($$der_r);
+    my $line_sep = substr($pem, -1);
+
+    substr( $pem, 0, 0, "-----BEGIN $whatsit-----$line_sep" );
+    substr( $pem, length($pem), 0, "-----END $whatsit-----" );
+
+    return $pem;
+}
 
 sub pem2der {
     my ($pem) = @_;

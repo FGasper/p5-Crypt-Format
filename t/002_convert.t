@@ -1,7 +1,8 @@
 use strict;
 use warnings;
 
-use Test::More tests => 3;                      # last test to print
+use Test::More tests => 6;                      # last test to print
+use Test::Exception;
 
 use Crypt::Format;
 
@@ -47,4 +48,27 @@ is(
     _to_hex( Crypt::Format::pem2der($csr_windows) ),
     $der_hex,
     'pem2der() with windows line breaks',
+);
+
+#----------------------------------------------------------------------
+
+my $der = Crypt::Format::pem2der($csr_unix);
+
+my $pem2 = Crypt::Format::der2pem($der, 'SOMETHING');
+
+like(
+    $pem2,
+    qr<\A-----BEGIN SOMETHING-----.+-----END SOMETHING-----\z>s,
+    "PEM conversion looks as expected",
+);
+
+is(
+    _to_hex( Crypt::Format::pem2der($pem2) ),
+    _to_hex( $der ),
+    '… and it round-trips as expected',
+);
+
+dies_ok(
+    sub { Crypt::Format::der2pem($der) },
+    'die() without a WHATSIT',
 );
