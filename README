@@ -1,15 +1,23 @@
-pod2text Crypt::Format.pm > README
+NAME
+    Crypt::Format - Conversion utilities for encryption applications
 
-If this is still here it means the programmer was too lazy to create the readme file.
+SYNOPSIS
+        use Crypt::Format;
 
-You can create it now by using the command shown above from this directory.
+        my $der = Crypt::Format::pem2der($pem);
+        my $pem = Crypt::Format::der2pem($der, 'CERTIFICATE REQUEST');
 
-At the very least you should be able to use this set of instructions
-to install the module...
+DESCRIPTION
+    Not much more to say! This module is for simple conversions that I got
+    tired of writing out.
 
-perl Makefile.PL
-make
-make test
-make install
+AUTHOR
+    Felipe Gasper (FELIPE)
 
-If you are on a windows box you should use 'nmake' rather than 'make'.
+COPYRIGHT
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
+    The full text of the license can be found in the LICENSE file included
+    with this module.
+
