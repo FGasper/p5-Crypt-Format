@@ -14,3 +14,6 @@ Revision history for Perl module Crypt::Format
 
 0.05 Thu Jan 14 13:00:00 2016
     - Add normalize_pem()
+
+0.051 Thu Jan 14 13:35:00 2016
+    - Add normalize_pem() to SYNOPSIS
