@@ -5,7 +5,7 @@ use warnings;
 
 use MIME::Base64 ();
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 =head1 NAME
 
@@ -48,6 +48,14 @@ sub pem2der {
     $pem =~ s<[\x0d\x0a]+[^\x0d\x0a]+?\z><>s;
 
     return MIME::Base64::decode($pem);
+}
+
+sub normalize_pem {
+    my ($pem) = @_;
+
+    $pem =~ m<BEGIN ([^-]+)> or die "Invalid PEM: “$pem”";
+
+    return der2pem( pem2der( $pem ), $1 );
 }
 
 =pod

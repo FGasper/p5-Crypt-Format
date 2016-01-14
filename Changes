@@ -11,3 +11,6 @@ Revision history for Perl module Crypt::Format
 
 0.04 Fri Jan  8 20:15:00 2016
     - Documentation, and more distribution issues
+
+0.05 Thu Jan 14 13:00:00 2016
+    - Add normalize_pem()
