@@ -3,9 +3,9 @@ package Crypt::Format;
 use strict;
 use warnings;
 
-use MIME::Base64 ();
+our $VERSION = '0.06';
 
-our $VERSION = '0.051';
+our $BASE64_MODULE = 'MIME::Base64';
 
 =head1 NAME
 
@@ -20,6 +20,16 @@ Crypt::Format - Conversion utilities for encryption applications
 
     my $good_pem = Crypt::Format::normalize_pem($weird_pem);
 
+    {
+        #If, for whatever reason, you don’t like MIME::Base64,
+        #then customize this. The module must have encode() and/or decode()
+        #functions, depending on which of this module’s functions you use.
+        #
+        local $Crypt::Format::BASE64_MODULE = '..';
+
+        Crypt::Format::...
+    }
+
 =head1 DESCRIPTION
 
 Not much more to say! This module is for simple conversions that I got
@@ -32,7 +42,7 @@ sub der2pem {
 
     die "Missing object type!" if !$whatsit;
 
-    my $pem = MIME::Base64::encode($$der_r);
+    my $pem = _do_base64('encode', $$der_r);
     my $line_sep = substr($pem, -1);
 
     substr( $pem, 0, 0, "-----BEGIN $whatsit-----$line_sep" );
@@ -49,7 +59,23 @@ sub pem2der {
     $pem =~ s<.+?[\x0d\x0a]+><>s;
     $pem =~ s<[\x0d\x0a]+[^\x0d\x0a]+?\z><>s;
 
-    return MIME::Base64::decode($pem);
+    return _do_base64('decode', $pem);
+}
+
+sub _do_base64 {
+    my $path = "$BASE64_MODULE.pm";
+    $path =~ s<::></>g;
+
+    _load_module($BASE64_MODULE) if !$INC{$path};
+
+    my $cr = $BASE64_MODULE->can(shift);
+    return $cr->(@_);
+}
+
+sub _load_module {
+    local $@;
+    eval "use $_[0]; 1" or die;
+    return $_[0];
 }
 
 sub normalize_pem {

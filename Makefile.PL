@@ -23,6 +23,7 @@ WriteMakefile(
          },
     },
     TEST_REQUIRES => {
+        'Test::More' => 1.0,
         'Test::Simple' => 0.44,
         'Test::Exception' => 0.40,
     },
