@@ -20,3 +20,6 @@ Revision history for Perl module Crypt::Format
 
 0.06 Sat Jan 16 23:00:00 2016
     - Allow customizable Base64 module
+
+0.07 Thu Feb  2 2017
+    - Fix POD encoding (thanks, CARNIL!), add repo to POD.

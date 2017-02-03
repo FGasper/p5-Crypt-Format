@@ -3,9 +3,11 @@ package Crypt::Format;
 use strict;
 use warnings;
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 our $BASE64_MODULE = 'MIME::Base64';
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -91,6 +93,10 @@ sub normalize_pem {
 =head1 AUTHOR
 
 Felipe Gasper (FELIPE)
+
+=head1 REPOSITORY
+
+https://github.com/FGasper/p5-Crypt-Format
 
 =head1 COPYRIGHT
 
