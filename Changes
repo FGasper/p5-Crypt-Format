@@ -1,5 +1,8 @@
 Revision history for Perl module Crypt::Format
 
+0.12 Tue Nov 16 2021
+    - BUG FIX: PEM without trailing CRLF is again parsed correctly.
+
 0.11 Tue Nov 16 2021
     - BUG FIX: Long(-ish) CRLF-separated PEM is fixed.
     - Use 64-byte line lengths.

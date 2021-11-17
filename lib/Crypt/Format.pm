@@ -3,7 +3,7 @@ package Crypt::Format;
 use strict;
 use warnings;
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 our $BASE64_MODULE = 'MIME::Base64';
 
@@ -65,7 +65,7 @@ sub pem2der {
     $pem =~ s<.+?[\x0d\x0a]+><>s;
 
     # Strip the last line and any trailing CRs and LFs:
-    $pem =~ s<[\x0d\x0a]+ [^\x0d\x0a]+? [\x0d\x0a]+?\z><>sx;
+    $pem =~ s<[\x0d\x0a]+ [^\x0d\x0a]+? [\x0d\x0a]*\z><>sx;
 
     return _do_base64('decode', $pem);
 }

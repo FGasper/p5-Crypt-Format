@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8;                      # last test to print
+use Test::More tests => 9;                      # last test to print
 use Test::FailWarnings;
 use Test::Exception;
 
@@ -91,4 +91,12 @@ is(
     Digest::MD5::md5_hex( Crypt::Format::pem2der($rsa2048) ),
     '8b83970f208e8bba1ca43139e8a7f4a8',
     'expected parse of a 2,048-bit RSA key',
+);
+
+my $dec = Crypt::Format::pem2der("-----BEGIN WHATEVER-----\nAAAA\n----END WHATEVER-----");
+
+is(
+    $dec,
+    "\0\0\0",
+    'decode without trailing whitespace',
 );
