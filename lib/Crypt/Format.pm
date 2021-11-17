@@ -3,7 +3,7 @@ package Crypt::Format;
 use strict;
 use warnings;
 
-our $VERSION = '0.11_01';
+our $VERSION = '0.11';
 
 our $BASE64_MODULE = 'MIME::Base64';
 
